@@ -1,15 +1,34 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from routes.userRoutes import router as userRoutes
 
 app = FastAPI()
 
+app.include_router(userRoutes)
 
-pratos = []
+#class Item(BaseModel):
+#    text: str
+#    is_done: bool = False
 
-@app.get("/")
-def root():
-    return {"Hello": "Word"}
+#pratos = []
 
-@app.post("/pratos")
-def createPrato(prato: str):
-    pratos.append(prato)
-    return pratos
+#@app.get("/")
+#def root():
+#    return {"Hello": "Word"}
+
+#@app.post("/pratos")
+#def create_prato(prato: Item):
+#    pratos.append(prato)
+#    return pratos
+
+#@app.get("/pratos", response_model=list[Item])
+#def list_prato(limit: int = 10):
+#    return pratos[0:limit]
+
+#@app.get("/pratos/{prato_id}", response_model=Item)
+#def get_prato(prato_id: int) -> Item:
+#    if prato_id < len(pratos):
+#        return pratos[prato_id]
+#    else:
+#        raise HTTPException(status_code=404, detail="Item not found")
+#
