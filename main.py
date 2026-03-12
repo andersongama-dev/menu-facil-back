@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from routes.userRoutes import router as user_routes
 
 app = FastAPI()
