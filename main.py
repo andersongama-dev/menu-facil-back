@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from routes.userRoutes import router as user_routes
+from routes.menuRoutes import router as menu_routes
 
 app = FastAPI()
 
 app.include_router(user_routes)
+app.include_router(menu_routes)
 
 #class Item(BaseModel):
 #    text: str
