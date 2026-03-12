@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from routes.userRoutes import router as userRoutes
+from routes.userRoutes import router as user_routes
 
 app = FastAPI()
 
-app.include_router(userRoutes)
+app.include_router(user_routes)
 
 #class Item(BaseModel):
 #    text: str

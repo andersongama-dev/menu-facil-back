@@ -1,6 +1,7 @@
 import sqlite3
+import os
 
-DB_FILE = "menufacil.db"
+DB_FILE = os.path.join(os.path.dirname(__file__), "menufacil.db")
 
 def get_connection():
     conn = sqlite3.connect(DB_FILE)
