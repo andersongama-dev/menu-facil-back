@@ -1,5 +1,4 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from routes.userRoutes import router as userRoutes
 
 app = FastAPI()
