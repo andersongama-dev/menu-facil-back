@@ -15,6 +15,7 @@
       <w>Porção</w>
       <w>Queijo</w>
       <w>Tabelas</w>
+      <w>Usuário</w>
       <w>Vegano</w>
       <w>Vegetariano</w>
       <w>alcoólicas</w>
@@ -24,12 +25,14 @@
       <w>artesanal</w>
       <w>azeite</w>
       <w>bovina</w>
+      <w>cadastrado</w>
       <w>cogumelos</w>
       <w>contém</w>
       <w>criadas</w>
       <w>crocante</w>
       <w>derivados</w>
       <w>dourado</w>
+      <w>encotrado</w>
       <w>frango</w>
       <w>frutas</w>
       <w>grelhado</w>
@@ -46,6 +49,7 @@
       <w>pratos</w>
       <w>queijo</w>
       <w>refrigerante</w>
+      <w>registrado</w>
       <w>salteados</w>
       <w>sucesso</w>
     </words>
