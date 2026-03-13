@@ -23,12 +23,12 @@ def list_menu():
     conn.close()
     return menu_items
 
-def find_menu_item(id):
+def find_menu_item(menu_id):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         SELECT id_item, name, description, price, cost, profit_margin, id_category FROM menu_items WHERE id_item = ?
-    """, (id,))
+    """, (menu_id,))
     row = cursor.fetchone()
     cursor.close()
     conn.close()
