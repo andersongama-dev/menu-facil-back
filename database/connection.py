@@ -123,16 +123,26 @@ def create_tables():
     conn.close()
     print("Tabelas criadas com sucesso!")
 
-def populate_test_data():
+def populate_rich_test_data():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO categories (name, description) VALUES (?, ?)", ("Massas", "Pratos à base de macarrão e massas italianas"))
-    cursor.execute("INSERT INTO categories (name, description) VALUES (?, ?)", ("Hambúrgueres", "Hambúrgueres artesanais"))
-    cursor.execute("INSERT INTO categories (name, description) VALUES (?, ?)", ("Bebidas", "Bebidas não alcoólicas"))
-    cursor.execute("INSERT INTO categories (name, description) VALUES (?, ?)", ("Sobremesas", "Doces e sobremesas da casa"))
+    categories = [
+        ("Massas", "Pratos à base de macarrão e massas italianas"),
+        ("Hambúrgueres", "Hambúrgueres artesanais"),
+        ("Bebidas", "Bebidas não alcoólicas"),
+        ("Sobremesas", "Doces e sobremesas da casa"),
+        ("Saladas", "Saladas frescas e saudáveis"),
+        ("Sopas", "Sopas quentes e nutritivas")
+    ]
+    for name, desc in categories:
+        cursor.execute("INSERT INTO categories (name, description) VALUES (?, ?)", (name, desc))
 
-    ingredients = ['Tomate','Alho','Azeite','Queijo','Leite','Cogumelo','Carne bovina','Frango','Pão','Alface','Batata','Chocolate','Morango','Manjericão','Massa']
+    ingredients = [
+        'Tomate','Alho','Azeite','Queijo','Leite','Cogumelo','Carne bovina','Frango','Pão',
+        'Alface','Batata','Chocolate','Morango','Manjericão','Massa','Espinafre','Ervilha',
+        'Cenoura','Milho','Molho pesto','Molho de tomate','Ovo','Mel','Feijão','Grão-de-bico'
+    ]
     for ing in ingredients:
         cursor.execute("INSERT INTO ingredients (name) VALUES (?)", (ing,))
 
@@ -146,17 +156,38 @@ def populate_test_data():
         cursor.execute("INSERT INTO dietary_restrictions (name, description) VALUES (?, ?)", (name, desc))
 
     menu_items = [
-        ("Macarrão Alho e Óleo","Macarrão com alho dourado e azeite",28.00,10.00,18.00,1),
-        ("Macarrão ao Pesto","Macarrão com molho pesto de manjericão",32.00,12.00,20.00,1),
-        ("Macarrão com Cogumelos","Macarrão com cogumelos salteados",34.00,13.00,21.00,1),
-        ("Hambúrguer Clássico","Hambúrguer com carne, queijo, alface e tomate",30.00,14.00,16.00,2),
-        ("Hambúrguer de Frango","Hambúrguer com filé de frango grelhado",29.00,13.00,16.00,2),
-        ("Batata Frita","Porção de batata frita crocante",15.00,6.00,9.00,2),
+        ("Macarrão Alho e Óleo","Massa italiana com alho dourado e azeite de oliva",28.00,10.00,18.00,1),
+        ("Macarrão ao Pesto","Macarrão com molho pesto fresco de manjericão e azeite",32.00,12.00,20.00,1),
+        ("Macarrão com Cogumelos","Massa com cogumelos salteados e temperos finos",34.00,13.00,21.00,1),
+        ("Espaguete à Bolonhesa","Espaguete com molho de carne bovina e tomate",35.00,14.00,21.00,1),
+        ("Lasanha Vegetariana","Lasanha de massa com legumes, molho de tomate e queijo",36.00,15.00,21.00,1),
+        ("Fettuccine Alfredo","Fettuccine com molho cremoso de queijo e alho",33.00,12.00,21.00,1),
+
+        ("Hambúrguer Clássico","Hambúrguer artesanal com carne bovina, queijo, alface e tomate",30.00,14.00,16.00,2),
+        ("Hambúrguer de Frango","Hambúrguer com filé de frango grelhado e molho especial",29.00,13.00,16.00,2),
+        ("Hambúrguer Vegano","Hambúrguer à base de grão-de-bico, sem queijo e sem carne",32.00,12.00,20.00,2),
+        ("Cheeseburger","Hambúrguer de carne bovina com queijo, cebola e molho barbecue",31.00,14.00,17.00,2),
+
+        ("Salada Caprese","Tomate, queijo mussarela, manjericão e azeite",20.00,8.00,12.00,5),
+        ("Salada Verde","Alface, espinafre, rúcula e cenoura ralada",18.00,7.00,11.00,5),
+        ("Salada de Grãos","Ervilha, milho, cenoura e molho leve",22.00,9.00,13.00,5),
+        ("Salada Mediterrânea","Tomate, azeitonas, pepino, grão-de-bico e azeite",24.00,10.00,14.00,5),
+
         ("Refrigerante","Lata de refrigerante 350ml",8.00,3.00,5.00,3),
-        ("Suco Natural","Suco natural de frutas",10.00,4.00,6.00,3),
-        ("Brownie de Chocolate","Brownie artesanal com chocolate",16.00,6.00,10.00,4),
-        ("Morango com Chocolate","Morango fresco coberto com chocolate",18.00,7.00,11.00,4)
+        ("Suco Natural","Suco natural de frutas variadas",10.00,4.00,6.00,3),
+        ("Chá Gelado","Chá gelado de ervas com limão",9.00,3.50,5.50,3),
+        ("Café Expresso","Café expresso fresco, puro ou com leite",7.00,2.50,4.50,3),
+
+        ("Brownie de Chocolate","Brownie artesanal com chocolate belga",16.00,6.00,10.00,4),
+        ("Morango com Chocolate","Morango fresco coberto com chocolate derretido",18.00,7.00,11.00,4),
+        ("Pudim de Leite","Pudim cremoso de leite com calda caramelizada",15.00,5.00,10.00,4),
+        ("Sorvete Vegano de Chocolate","Sorvete de chocolate sem leite, 100% vegano",20.00,8.00,12.00,4),
+        ("Torta de Maçã","Torta assada com recheio de maçã e canela",19.00,8.00,11.00,4),
+
+        ("Sopa de Legumes","Sopa nutritiva com cenoura, batata e ervilha",14.00,6.00,8.00,6),
+        ("Sopa de Abóbora","Sopa cremosa de abóbora e especiarias",16.00,7.00,9.00,6)
     ]
+
     for name, desc, price, cost, profit, cat_id in menu_items:
         cursor.execute("""
             INSERT INTO menu_items (name, description, price, cost, profit_margin, id_category)
@@ -166,9 +197,10 @@ def populate_test_data():
     conn.commit()
     cursor.close()
     conn.close()
-    print("Dados de teste inseridos com sucesso!")
+    print("Banco populado com pratos variados e descrições enriquecidas!")
+
 
 if __name__ == "__main__":
     create_tables()
-    populate_test_data()
+    populate_rich_test_data()
 
