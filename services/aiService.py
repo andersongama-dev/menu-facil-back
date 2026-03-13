@@ -93,7 +93,7 @@ def extract_keywords(user_text: str) -> Tuple[List[str], List[str], List[str]]:
 
 def fetch_menu_items() -> List[Menu]:
     conn = get_connection()
-    cursor = conn.cursor()  # sem dictionary=True
+    cursor = conn.cursor()
     cursor.execute("""
         SELECT id_item, name, description, price, cost, profit_margin, id_category
         FROM menu_items
