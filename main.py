@@ -2,12 +2,16 @@ from fastapi import FastAPI
 from routes.userRoutes import router as user_routes
 from routes.menuRoutes import router as menu_routes
 from routes.aiRoutes import router as ai_suggest
+import uvicorn
 
 app = FastAPI()
 
 app.include_router(user_routes)
 app.include_router(menu_routes)
 app.include_router(ai_suggest)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80)
 
 #class Item(BaseModel):
 #    text: str
