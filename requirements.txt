@@ -1,7 +1,6 @@
 
 fastapi
 pydantic
-openai
 protobuf
 sentence-transformers
 numpy
