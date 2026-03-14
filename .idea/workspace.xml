@@ -7,11 +7,7 @@
     <list default="true" id="d95f0ec8-1d20-4a1e-8719-3b059cceffc7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/orderRoute.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/orderRoute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/orderService.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/orderService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/items.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
