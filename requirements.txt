@@ -5,3 +5,5 @@ protobuf
 sentence-transformers
 numpy
 uvicorn
+langchain-core
+langchain-ollama
