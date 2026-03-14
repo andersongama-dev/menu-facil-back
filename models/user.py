@@ -2,6 +2,8 @@ import uuid
 from datetime import datetime, timezone
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
+
 from database.connection import Base
 
 class UserORM(Base):
@@ -12,3 +14,5 @@ class UserORM(Base):
     email = Column(String(150), nullable=False, unique=True)
     phone = Column(String(20))
     created_at = Column(TIMESTAMP(timezone=True), default=lambda: datetime.now(timezone.utc))
+
+    orders = relationship("OrderORM", back_populates="user")
