@@ -20,10 +20,14 @@
       <w>Mediterrânea</w>
       <w>Nenhuma</w>
       <w>Orde</w>
+      <w>Pergunta</w>
       <w>Porção</w>
       <w>Pudim</w>
       <w>Queijo</w>
+      <w>Responda</w>
+      <w>Resposta</w>
       <w>Saladas</w>
+      <w>Seja</w>
       <w>Sopas</w>
       <w>Sorvete</w>
       <w>Tabelas</w>
@@ -31,6 +35,7 @@
       <w>Vegano</w>
       <w>Vegetariana</w>
       <w>Vegetariano</w>
+      <w>abaixo</w>
       <w>abóbora</w>
       <w>alcoólicas</w>
       <w>alface</w>
@@ -61,6 +66,7 @@
       <w>descrições</w>
       <w>desejado</w>
       <w>dourado</w>
+      <w>encerrar</w>
       <w>encontrada</w>
       <w>encotrado</w>
       <w>enriquecidas</w>
@@ -77,6 +83,7 @@
       <w>gostaria</w>
       <w>grelhado</w>
       <w>hambúrguer</w>
+      <w>historico</w>
       <w>ingredientes</w>
       <w>inseridos</w>
       <w>iogurte</w>
@@ -87,6 +94,7 @@
       <w>leite</w>
       <w>macarrão</w>
       <w>manjericão</w>
+      <w>manter</w>
       <w>massa</w>
       <w>massas</w>
       <w>menufacil</w>
@@ -94,6 +102,7 @@
       <w>molho</w>
       <w>mussarela</w>
       <w>muçarela</w>
+      <w>nossa</w>
       <w>nutritiva</w>
       <w>nutritivas</w>
       <w>ordem</w>
@@ -106,12 +115,15 @@
       <w>queijo</w>
       <w>quentes</w>
       <w>quero</w>
+      <w>questão</w>
       <w>ralada</w>
       <w>recheio</w>
       <w>reformular</w>
       <w>refrigerante</w>
       <w>registrado</w>
+      <w>retonar</w>
       <w>rúcula</w>
+      <w>sair</w>
       <w>salteados</w>
       <w>saudáveis</w>
       <w>sobre</w>
@@ -124,6 +136,7 @@
       <w>variados</w>
       <w>vegano</w>
       <w>vegetariano</w>
+      <w>vindo</w>
     </words>
   </dictionary>
 </component>
