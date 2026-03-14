@@ -1,6 +1,7 @@
+import models
 from fastapi import FastAPI
 from routes.userRoutes import router as user_routes
-#from routes.menuRoutes import router as menu_routes
+from routes.menuRoutes import router as menu_routes
 #from routes.aiRoutes import router as ai_suggest
 #from routes.orderRoute import router as order_routes
 import uvicorn
@@ -8,7 +9,7 @@ import uvicorn
 app = FastAPI()
 
 app.include_router(user_routes)
-#app.include_router(menu_routes)
+app.include_router(menu_routes)
 #app.include_router(ai_suggest)
 #app.include_router(order_routes)
 

@@ -1,9 +1,7 @@
 from datetime import datetime, timezone
-
 from sqlalchemy import Column, String, Integer, TIMESTAMP, BOOLEAN, NUMERIC, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
-
-Base = declarative_base()
+from sqlalchemy.orm import relationship
+from database.connection import Base
 
 class MenuORM(Base):
     __tablename__ = "menu_items"

@@ -2,9 +2,7 @@ import uuid
 from datetime import datetime, timezone
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
+from database.connection import Base
 
 class UserORM(Base):
     __tablename__ = "users"
