@@ -2,13 +2,13 @@ from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
 template = """
-    
+
     Responda a questão abaixo.
-    
+
     Esté é um historico da nossa conversa {context}
-    
+
     Pergunta {question}
-    
+
     Resposta:
     """
 
@@ -29,6 +29,7 @@ def manter():
         result = chain.invoke({"context": context, "question": user_input})
         print("Bot: ", result)
         context += f"\nUser: {user_input}\n AI: {result}"
+
 
 if __name__ == "__main__":
     manter()

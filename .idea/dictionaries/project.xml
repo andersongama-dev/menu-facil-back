@@ -9,6 +9,7 @@
       <w>Cogumelo</w>
       <w>Cogumelos</w>
       <w>Digite</w>
+      <w>Escolha</w>
       <w>Experimente</w>
       <w>Fazer</w>
       <w>Feijão</w>
@@ -26,6 +27,7 @@
       <w>Queijo</w>
       <w>Responda</w>
       <w>Resposta</w>
+      <w>Retorne</w>
       <w>Saladas</w>
       <w>Seja</w>
       <w>Sopas</w>
@@ -40,6 +42,7 @@
       <w>alcoólicas</w>
       <w>alface</w>
       <w>alho</w>
+      <w>apenas</w>
       <w>artesanais</w>
       <w>artesanal</w>
       <w>assada</w>
@@ -55,6 +58,7 @@
       <w>cenoura</w>
       <w>champignon</w>
       <w>cogumelos</w>
+      <w>combinam</w>
       <w>contém</w>
       <w>cremosa</w>
       <w>cremoso</w>
@@ -64,7 +68,9 @@
       <w>derivados</w>
       <w>derretido</w>
       <w>descrições</w>
+      <w>deseja</w>
       <w>desejado</w>
+      <w>disponíveis</w>
       <w>dourado</w>
       <w>encerrar</w>
       <w>encontrada</w>
@@ -75,6 +81,7 @@
       <w>espaguete</w>
       <w>especiarias</w>
       <w>espinafre</w>
+      <w>explicações</w>
       <w>finalizado</w>
       <w>frango</w>
       <w>frescas</w>
@@ -97,11 +104,13 @@
       <w>manter</w>
       <w>massa</w>
       <w>massas</w>
+      <w>melhores</w>
       <w>menufacil</w>
       <w>milho</w>
       <w>molho</w>
       <w>mussarela</w>
       <w>muçarela</w>
+      <w>nomes</w>
       <w>nossa</w>
       <w>nutritiva</w>
       <w>nutritivas</w>
@@ -121,14 +130,18 @@
       <w>reformular</w>
       <w>refrigerante</w>
       <w>registrado</w>
+      <w>restaurante</w>
       <w>retonar</w>
       <w>rúcula</w>
       <w>sair</w>
       <w>salteados</w>
       <w>saudáveis</w>
+      <w>separados</w>
       <w>sobre</w>
       <w>sucesso</w>
+      <w>sugere</w>
       <w>sugestão</w>
+      <w>sugira</w>
       <w>temperos</w>
       <w>tomatinhos</w>
       <w>usuário</w>
@@ -137,6 +150,7 @@
       <w>vegano</w>
       <w>vegetariano</w>
       <w>vindo</w>
+      <w>vírgula</w>
     </words>
   </dictionary>
 </component>
