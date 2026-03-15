@@ -9,6 +9,7 @@
       <w>Cogumelo</w>
       <w>Cogumelos</w>
       <w>Digite</w>
+      <w>Erro</w>
       <w>Escolha</w>
       <w>Experimente</w>
       <w>Fazer</w>
@@ -24,6 +25,7 @@
       <w>Orde</w>
       <w>Pergunta</w>
       <w>Porção</w>
+      <w>Preferências</w>
       <w>Pudim</w>
       <w>Queijo</w>
       <w>Responda</w>
@@ -43,6 +45,7 @@
       <w>alcoólicas</w>
       <w>alface</w>
       <w>alho</w>
+      <w>anteriores</w>
       <w>apenas</w>
       <w>artesanais</w>
       <w>artesanal</w>
@@ -84,6 +87,7 @@
       <w>especiarias</w>
       <w>espinafre</w>
       <w>explicações</w>
+      <w>favorito</w>
       <w>finalizado</w>
       <w>frango</w>
       <w>frescas</w>
@@ -95,6 +99,7 @@
       <w>historico</w>
       <w>ingredientes</w>
       <w>inseridos</w>
+      <w>interação</w>
       <w>iogurte</w>
       <w>italiana</w>
       <w>italianas</w>
@@ -135,10 +140,12 @@
       <w>refrigerante</w>
       <w>registrado</w>
       <w>restaurante</w>
+      <w>restricao</w>
       <w>retonar</w>
       <w>rúcula</w>
       <w>sair</w>
       <w>salteados</w>
+      <w>salvar</w>
       <w>saudáveis</w>
       <w>separados</w>
       <w>sobre</w>
