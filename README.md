@@ -1,121 +1,161 @@
-MenuFacil API v1.0
-Descrição
+# MenuFacil API v1.5.0
 
-MenuFacil é uma API construída com FastAPI para gerenciamento de cardápio, pedidos de usuários e recomendações de IA. Permite gerenciar usuários, itens de menu, categorias, ingredientes, restrições dietéticas e registrar pedidos.
+[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.95.2-green)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
-Esta versão inclui dados de teste, estrutura completa do banco SQLite e endpoints básicos para consumo da API.
+## Descrição
 
-Tecnologias
+**MenuFacil** é uma API construída com **FastAPI** para gerenciamento de cardápio, pedidos de usuários e recomendações inteligentes com IA.  
 
-Python 3.10+
+Principais funcionalidades:  
+- Gerenciamento de usuários, itens de menu, categorias, ingredientes e restrições dietéticas.  
+- Registro de pedidos de usuários.  
+- Armazenamento de preferências detectadas do usuário (`user_preferences`).  
+- Registro de interações da IA (`ai_interactions`) para aprimorar recomendações futuras.  
+- Recomendações personalizadas usando o modelo **LLaMA3** via **Ollama**.
 
-FastAPI
+A documentação interativa está disponível em [http://127.0.0.1:8080/docs](http://127.0.0.1:8080/docs).
 
-SQLite
+---
 
-Uvicorn
+## Tecnologias
 
-Clone o repositório:
+- Python 3.10+  
+- FastAPI  
+- Banco de dados na nuvem (PostgreSQL ou similar)  
+- Uvicorn  
+- Ollama + LLaMA3 (recomendações de IA)
 
+---
+
+## Clonando o Repositório
+
+```bash
 git clone https://github.com/andersongama-dev/menu-facil-back.git
 cd menu-facil-back
 
+```
+
+## Configurando o Ambiente
+
 Crie e ative um ambiente virtual:
 
+```bash
 python -m venv venv
-# Linux / Mac
+
+Linux / Mac:
+
 source venv/bin/activate
-# Windows
+
+Windows:
+
 venv\Scripts\activate
 
 Instale as dependências:
 
 pip install -r requirements.txt
 
-Verifique o banco SQLite (database/menufacil.db) e configure a variável de ambiente opcional DB_FILE caso queira customizar o caminho.
+```
 
-Rodando a API
+Observação: Para usar as recomendações de IA, instale Ollama seguindo esta documentação
+ e certifique-se de ter o modelo LLaMA3 disponível localmente.
+
+### Configuração do Banco de Dados
+
+O banco de dados está hospedado na nuvem. Configure as credenciais via variáveis de ambiente:
+
+```bash
+Linux / Mac:
+
+export DB_URL="postgresql://usuario:senha@host:porta/banco"
+```
+```bash
+Windows (PowerShell):
+
+setx DB_URL "postgresql://usuario:senha@host:porta/banco"
+```
+
+## Rodando a API
+```bash
 uvicorn main:app --host 0.0.0.0 --port 8080
+```
 
-A API estará disponível em http://localhost:8080.
+A API estará disponível em http://localhost:8080
 
-Endpoints Principais
+A documentação interativa pode ser acessada em http://127.0.0.1:8080/docs
+
+## Endpoints Principais
 Usuários
 
-POST /user/register – Criar usuário
+- POST /user/register – Criar usuário
 
-GET /user/login – Buscar um usuário
+- GET /user/login/{user_email} – Buscar usuário e autenticar
 
 Menu
 
-GET /menu – Listar itens de menu
+- GET /menu/ – Listar itens do cardápio
 
-GET /menu/{id_item} – Consultar item específico
-
-IA e Recomendações
-
-POST /ai/suggest – Buscar sugestão
+- GET /menu/{menu_id} – Consultar item específico
 
 Pedidos
 
-POST /order – Criar pedido
+- POST /order/ – Criar pedido
 
-Banco de Dados
+- GET /order/{user_id} – Listar todos os pedidos de um usuário
 
-Banco: SQLite (database/menufacil.db)
+IA e Recomendações
 
-Tabelas principais:
+- GET /ai/suggest – Buscar sugestão da IA baseada em preferências do usuário
 
-users
+## Banco de Dados
 
-ai_interactions
+Principais tabelas:
 
-user_preferences
+- users
 
-categories
+- ai_interactions – registra interações do usuário com a IA
 
-menu_items
+- user_preferences – salva preferências detectadas do usuário
 
-ingredients
+- categories
 
-menu_item_ingredients
+- menu_items
 
-dietary_restrictions
+- ingredients
 
-menu_item_restrictions
+- menu_item_ingredients
 
-orders
+- dietary_restrictions
 
-Relações
+- menu_item_restrictions
 
-ai_interactions.id_user → users.id_user
+- orders
 
-user_preferences.id_user → users.id_user (cascade delete)
+Relações:
 
-menu_items.id_category → categories.id_category
+- ai_interactions.id_user → users.id_user
 
-menu_item_ingredients.id_item → menu_items.id_item (cascade delete)
+- user_preferences.id_user → users.id_user (cascade delete)
 
-menu_item_ingredients.id_ingredient → ingredients.id_ingredient (cascade delete)
+- menu_items.id_category → categories.id_category
 
-menu_item_restrictions.id_item → menu_items.id_item (cascade delete)
+- menu_item_ingredients.id_item → menu_items.id_item (cascade delete)
 
-menu_item_restrictions.id_restriction → dietary_restrictions.id_restriction (cascade delete)
+- menu_item_ingredients.id_ingredient → ingredients.id_ingredient (cascade delete)
 
-orders.id_user → users.id_user
+- menu_item_restrictions.id_item → menu_items.id_item (cascade delete)
 
-Dados de Teste
+- menu_item_restrictions.id_restriction → dietary_restrictions.id_restriction (cascade delete)
 
-Categorias: Massas, Hambúrgueres, Bebidas, Sobremesas, Saladas, Sopas
+- orders.id_user → users.id_user
 
-Ingredientes variados e restrições dietéticas incluídas
+## Observações
 
-Itens de menu com descrições, preço, custo e margem de lucro
+- Preparada para deploy em servidores que suportem FastAPI/uvicorn.
 
-Observações
+- Salva interações de IA e preferências do usuário para melhorar recomendações futuras.
 
-Caminho do banco configurável via variável DB_FILE.
+- Documentação interativa disponível via Swagger UI: http://127.0.0.1:8080/docs
 
-Preparado para deploy em servidores que suportem FastAPI/uvicorn.
-
-Banco incluído para facilitar testes e deploy inicial.
+## MIT License
