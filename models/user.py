@@ -16,3 +16,4 @@ class UserORM(Base):
 
     orders = relationship("OrderORM", back_populates="user")
     ai_interactions = relationship("AIORM", back_populates="user")
+    preferences = relationship("UserPreferenceORM", back_populates="user")
