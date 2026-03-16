@@ -5,35 +5,55 @@ from models.ai import AIORM
 from models.user_preference import UserPreferenceORM
 
 template = """
-    Responda a questão abaixo.
+Responda a questão abaixo.
 
-    Histórico da conversa:
-    {context}
+Histórico da conversa:
+{context}
 
-    Pergunta:
-    {question}
+Pergunta:
+{question}
 
-    Resposta:
-    """
+Resposta:
+"""
 
 model = OllamaLLM(
     model="llama3:latest",
-    base_url="http://localhost:11434"
+    base_url="https://infusorial-louisa-penetratively.ngrok-free.dev/"
 )
 
 prompt = ChatPromptTemplate.from_template(template)
-
 chain = prompt | model
+
+def extract_exclusions(user_input):
+    exclusions = []
+    lower_input = user_input.lower()
+    if "não quero" in lower_input:
+        parts = lower_input.split("não quero")[1:]  # tudo após 'não quero'
+        for p in parts:
+            words = p.strip().split()
+            if words:
+                exclusions.append(words[0])
+    return exclusions
+
+def filter_items_by_exclusion(items, exclusions):
+    if not exclusions:
+        return items
+    filtered = []
+    for item in items:
+        name_desc = f"{item.name} {item.description}".lower()
+        if not any(excl in name_desc for excl in exclusions):
+            filtered.append(item)
+    return filtered if filtered else items
 
 def llm_select(items, user_input, context="", user_id=None):
     history_text = ""
     preferences_text = ""
-
+    exclusions = extract_exclusions(user_input)
+    items_filtered = filter_items_by_exclusion(items, exclusions)
     if user_id:
         user_history = get_user_history(user_id)
         if user_history:
             history_text = "Histórico recente do usuário:\n" + summarize_history(user_history)
-
         user_preferences = get_user_preferences(user_id)
         if user_preferences:
             preferences_summary = [
@@ -42,24 +62,23 @@ def llm_select(items, user_input, context="", user_id=None):
             ]
             preferences_text = "Preferências do usuário:\n" + "\n".join(preferences_summary)
 
-    menu_text = "\n".join([f"{item.name}: {item.description}" for item in items])
+    menu_text = "\n".join([f"{item.name}: {item.description}" for item in items_filtered])
 
     prompt_text = f"""
-    Você é uma IA especializada em recomendar pratos de restaurante. Sempre siga o pedido do usuário. 
-    Use o histórico e as preferências apenas se o pedido for vago ou pouco claro.
+        Você é uma IA especializada em recomendar pratos de restaurante. Sempre siga estritamente o pedido do usuário. 
+        Se o usuário disser que NÃO quer algum ingrediente ou tipo de prato, **não inclua esses itens** na recomendação.
 
-    Menu disponível:
-    {menu_text}
+        Menu disponível:
+        {menu_text}
 
-    {preferences_text}
-    {history_text}
+        {preferences_text}
+        {history_text}
 
-    Pedido do usuário:
-    {user_input}
+        Pedido do usuário:
+        {user_input}
 
-    Escolha os 4 melhores pratos para o pedido do usuário. Retorne apenas os nomes, separados por vírgula.
-    """
-
+        Escolha os 4 melhores pratos para o pedido do usuário. Retorne apenas os nomes, separados por vírgula.
+        """
     try:
         response = chain.invoke({
             "context": context,
@@ -67,17 +86,14 @@ def llm_select(items, user_input, context="", user_id=None):
         })
     except Exception as e:
         print(f"Erro na LLM: {e}")
-        return items[:4]
-
+        return items_filtered[:4]
     names = [n.strip() for n in response.split(",")][:4]
-    recommended = [item for item in items if item.name in names]
-
-    for item in items:
+    recommended = [item for item in items_filtered if item.name in names]
+    for item in items_filtered:
         if item not in recommended:
             recommended.append(item)
         if len(recommended) == 4:
             break
-
     return recommended
 
 def get_user_history(user_id, limit=5):
@@ -125,4 +141,3 @@ def get_user_preferences(user_id, limit=10):
         return result
     finally:
         session.close()
-

@@ -8,3 +8,4 @@ uvicorn
 langchain-core
 langchain-ollama
 sqlalchemy
+starlette
