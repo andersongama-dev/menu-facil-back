@@ -1,6 +1,3 @@
-from utils.intent_parser import parse_user_intent
-from utils.menu_filter import filter_menu
-from utils.ranking import rank_with_preferences
 from utils.upsell import get_upsells
 from utils.ai import llm_select
 from utils.items import fetch_all_menu_items
@@ -8,32 +5,20 @@ from models.ai import AIORM
 from models.user_preference import UserPreferenceORM
 from database.connection import SessionLocal
 
-def ai_suggest_menu(user_input: str, user_id, context=""):
-
+def ai_suggest_menu(user_input: str, user_id,):
     items = fetch_all_menu_items()
 
-    intent = parse_user_intent(user_input)
-
-    filtered = filter_menu(items, intent)
-
-    parsed_intent = intent
-
-    ranked = rank_with_preferences(filtered, user_id)
-    candidates = ranked[:10]
-
-    selected = llm_select(candidates, user_input, context, user_id=user_id)
+    selected = llm_select(items, user_input)
 
     drink, dessert = get_upsells(items)
 
     try:
-        save_ia(user_id, user_input, parsed_intent)
+        save_interaction(user_id, user_input)
+
         if selected and selected[0].category:
             category_name = selected[0].category.name or f"Categoria_{selected[0].category.id_category}"
-            save_preference(
-                user_id=user_id,
-                preference_type=category_name,
-                preference_value=selected[0].name
-            )
+            save_preference(user_id, category_name, selected[0].name)
+
     except Exception as e:
         print(f"Erro ao salvar interação: {e}")
 
@@ -45,18 +30,20 @@ def ai_suggest_menu(user_input: str, user_id, context=""):
         }
     }
 
-def save_ia(user_id, user_input, parsed_intent):
+
+def save_interaction(user_id, user_input):
     session = SessionLocal()
     try:
         new_ia = AIORM(
             id_user=user_id,
             input_text=user_input,
-            parsed_intent=parsed_intent
+            parsed_intent=None
         )
         session.add(new_ia)
         session.commit()
     finally:
         session.close()
+
 
 def save_preference(user_id, preference_type, preference_value):
     session = SessionLocal()
@@ -65,22 +52,24 @@ def save_preference(user_id, preference_type, preference_value):
             UserPreferenceORM.id_user == user_id,
             UserPreferenceORM.preference_type == preference_type
         ).all()
+
         matched = next((p for p in prefs if p.preference_value == preference_value), None)
         if matched:
-            matched.confidence_score = 1.00
+            matched.confidence_score = min(float(matched.confidence_score) + 0.2, 1.0)
         else:
             matched = UserPreferenceORM(
                 id_user=user_id,
                 preference_type=preference_type,
                 preference_value=preference_value,
-                confidence_score=1.00
+                confidence_score=0.2
             )
             session.add(matched)
             prefs.append(matched)
-        other_prefs = [p for p in prefs if p != matched]
-        for p in other_prefs:
-            score = float(p.confidence_score)
-            p.confidence_score = max(score * 0.5, 0.10)
+
+        for p in prefs:
+            if p != matched:
+                p.confidence_score = max(float(p.confidence_score) * 0.9, 0.05)
+
         session.commit()
     finally:
         session.close()

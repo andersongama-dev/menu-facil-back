@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>Abóbora</w>
+      <w>Baseie</w>
       <w>Bebidas</w>
       <w>Bolonhesa</w>
       <w>Caprese</w>
@@ -16,20 +17,26 @@
       <w>Feijão</w>
       <w>Hambúrguer</w>
       <w>Hambúrgueres</w>
+      <w>Limite</w>
       <w>Macarrão</w>
       <w>Massa</w>
       <w>Massas</w>
       <w>Mediterrânea</w>
       <w>Nenhum</w>
       <w>Nenhuma</w>
+      <w>Nunca</w>
       <w>Orde</w>
       <w>Pergunta</w>
       <w>Porção</w>
       <w>Preferências</w>
+      <w>Prioridades</w>
       <w>Pudim</w>
       <w>Queijo</w>
+      <w>Regras</w>
+      <w>Respeite</w>
       <w>Responda</w>
       <w>Resposta</w>
+      <w>Resumo</w>
       <w>Retorne</w>
       <w>Saladas</w>
       <w>Seja</w>
@@ -45,21 +52,26 @@
       <w>alcoólicas</w>
       <w>alface</w>
       <w>alho</w>
+      <w>alimentar</w>
+      <w>alimentares</w>
       <w>anteriores</w>
       <w>apenas</w>
       <w>artesanais</w>
       <w>artesanal</w>
       <w>assada</w>
+      <w>atual</w>
       <w>azeite</w>
       <w>azeitonas</w>
       <w>belga</w>
       <w>bovina</w>
+      <w>bruta</w>
       <w>cadastrado</w>
       <w>calda</w>
       <w>caramelizada</w>
       <w>carregados</w>
       <w>cebola</w>
       <w>cenoura</w>
+      <w>chamada</w>
       <w>champignon</w>
       <w>cogumelos</w>
       <w>combinam</w>
@@ -86,13 +98,20 @@
       <w>ervas</w>
       <w>ervilha</w>
       <w>espaguete</w>
+      <w>especialista</w>
       <w>especializada</w>
       <w>especiarias</w>
       <w>espinafre</w>
       <w>estritamente</w>
+      <w>exatamente</w>
+      <w>excluir</w>
+      <w>exclusões</w>
       <w>explicações</w>
+      <w>explique</w>
+      <w>extrai</w>
       <w>favorito</w>
       <w>finalizado</w>
+      <w>formato</w>
       <w>frango</w>
       <w>frescas</w>
       <w>frutas</w>
@@ -101,10 +120,16 @@
       <w>grelhado</w>
       <w>hambúrguer</w>
       <w>historico</w>
+      <w>identifique</w>
+      <w>incluir</w>
       <w>ingrediente</w>
       <w>ingredientes</w>
       <w>inseridos</w>
+      <w>intenção</w>
       <w>interação</w>
+      <w>interações</w>
+      <w>interpretar</w>
+      <w>invente</w>
       <w>iogurte</w>
       <w>italiana</w>
       <w>italianas</w>
@@ -132,11 +157,15 @@
       <w>origem</w>
       <w>parmesão</w>
       <w>pedido</w>
+      <w>pedir</w>
+      <w>pediu</w>
       <w>populado</w>
       <w>porco</w>
       <w>pouco</w>
       <w>pratos</w>
       <w>preferências</w>
+      <w>principalmente</w>
+      <w>quaisquer</w>
       <w>queijo</w>
       <w>quentes</w>
       <w>quer</w>
@@ -144,14 +173,18 @@
       <w>questão</w>
       <w>ralada</w>
       <w>recente</w>
+      <w>recentemente</w>
       <w>recheio</w>
       <w>recomendar</w>
       <w>recomendação</w>
       <w>reformular</w>
       <w>refrigerante</w>
       <w>registrado</w>
+      <w>relevantes</w>
+      <w>resposta</w>
       <w>restaurante</w>
       <w>restricao</w>
+      <w>restrições</w>
       <w>retonar</w>
       <w>rúcula</w>
       <w>sair</w>
@@ -159,21 +192,26 @@
       <w>salvar</w>
       <w>saudáveis</w>
       <w>separados</w>
+      <w>sistema</w>
       <w>sobre</w>
+      <w>somente</w>
       <w>sucesso</w>
       <w>sugere</w>
       <w>sugestão</w>
       <w>sugira</w>
       <w>temperos</w>
+      <w>tipos</w>
       <w>tomatinhos</w>
       <w>usuário</w>
       <w>vago</w>
       <w>variadas</w>
       <w>variados</w>
+      <w>variedade</w>
       <w>vegano</w>
       <w>vegetariano</w>
       <w>vindo</w>
       <w>vírgula</w>
+      <w>últimas</w>
     </words>
   </dictionary>
 </component>
