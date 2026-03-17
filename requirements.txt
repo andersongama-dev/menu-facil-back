@@ -9,3 +9,4 @@ langchain-core
 langchain-ollama
 sqlalchemy
 starlette
+langchain-openrouter

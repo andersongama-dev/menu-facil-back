@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d95f0ec8-1d20-4a1e-8719-3b059cceffc7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/summarize_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/user_history.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/user_preferences.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/menu-facil-back.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/aiRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/aiRoutes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/aiService.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/aiService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/intent_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/intent_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/menu_filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/menu_filter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/ranking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/upsell.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/upsell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
