@@ -7,6 +7,7 @@ from routes.menuRoutes import router as menu_routes
 from routes.orderRoutes import router as order_routes
 from routes.aiRoutes import router as ai_suggest
 from routes.suggestRoutes import router as user_suggest
+from routes.comboRouter import router as combo_suggest
 import uvicorn
 
 app = FastAPI()
@@ -30,6 +31,7 @@ app.include_router(menu_routes)
 app.include_router(order_routes)
 app.include_router(ai_suggest)
 app.include_router(user_suggest)
+app.include_router(combo_suggest)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
