@@ -4,8 +4,9 @@ from utils.items import fetch_all_menu_items
 from models.ai import AIORM
 from models.user_preference import UserPreferenceORM
 from database.connection import SessionLocal
+from utils.find_user import find_user
 
-def ai_suggest_menu(user_input: str, user_id,):
+def ai_suggest_menu(user_input: str, user_email,):
     items = fetch_all_menu_items()
 
     selected = llm_select(items, user_input)
@@ -13,11 +14,13 @@ def ai_suggest_menu(user_input: str, user_id,):
     drink, dessert = get_upsells(items)
 
     try:
-        save_interaction(user_id, user_input)
+        user = find_user(user_email)
+
+        save_interaction(user_email, user_input)
 
         if selected and selected[0].category:
             category_name = selected[0].category.name or f"Categoria_{selected[0].category.id_category}"
-            save_preference(user_id, category_name, selected[0].name)
+            save_preference(user.id_user, category_name, selected[0].name)
 
     except Exception as e:
         print(f"Erro ao salvar interação: {e}")
