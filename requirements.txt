@@ -10,3 +10,7 @@ langchain-ollama
 sqlalchemy
 starlette
 langchain-openrouter
+retry-requests
+requests-cache
+openmeteo-requests
+requests
