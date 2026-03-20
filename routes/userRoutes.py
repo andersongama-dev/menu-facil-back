@@ -1,33 +1,24 @@
-import uuid
-from datetime import datetime
 from fastapi import APIRouter
 from pydantic import BaseModel
-
 import services.userServices as serviceUser
-
-class UserOut(BaseModel):
-    id_user: uuid.UUID
-    name: str
-    email: str
-    phone: str
-    created_at: datetime
-
-    class Config:
-        orm_mode = True
 
 class UserCreate(BaseModel):
     name: str
     email: str
-    phone: str
+    password: str
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
 
 router = APIRouter(prefix="/user", tags=["user"])
 
-@router.get("/login/{user_email}", response_model=UserOut)
-def login(user_email: str):
-    user = serviceUser.find_user(user_email)
-    return user
+@router.post("/login",)
+def login(user: UserLogin):
+    token = serviceUser.find_user(user.email, user.password)
+    return {"access_token": token}
 
-@router.post("/register", response_model=UserOut)
+@router.post("/register")
 def register(user: UserCreate):
-    new_user = serviceUser.add_user(user.name, user.email, user.phone)
-    return new_user
+    token = serviceUser.add_user(user.name, user.email, user.password)
+    return {"access_token": token}
