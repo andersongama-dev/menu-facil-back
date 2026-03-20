@@ -4,7 +4,7 @@ import unicodedata
 menu_items = fetch_all_menu_items()
 
 combo_rules = {
-    "pizza": ["coca"],
+    "pizza": ["vinho", "sobremesa"],
     "hamburguer": ["batata frita", "coca"],
     "sobremesa": ["suco natural"],
 }
