@@ -1,13 +1,12 @@
-from fastapi import HTTPException
 from database.connection import SessionLocal
 from models.order import OrderORM
-from models.user import UserORM
+from utils.find_user import find_user
 
 
 def create_order(user_email, price):
     session = SessionLocal()
     try:
-        user = find_user(session, user_email)
+        user = find_user(user_email)
         new_order = OrderORM(
             id_user=user.id_user,
             total_price=price
@@ -28,10 +27,3 @@ def find_order(user_email):
         return orders
     finally:
         session.close()
-
-
-def find_user(session, user_email) -> UserORM:
-    exists = session.query(UserORM).filter(UserORM.email == user_email).first()
-    if not exists:
-        raise HTTPException(status_code=404, detail="Usuário não encontrado")
-    return exists
