@@ -20,7 +20,7 @@ class OrderOut(BaseModel):
 
 router = APIRouter(prefix="/order", tags=["order"])
 
-@router.post("/", response_model=OrderOut)
+@router.post("", response_model=OrderOut)
 def new_order(order: OrderCreate, current_user: str = Depends(get_current_user)):
     return serviceOrder.create_order(current_user, order.total_price)
 

@@ -1,10 +1,10 @@
 from utils.ranking import rank_with_preferences
 from utils.items import fetch_all_menu_items
 
-def user_suggest(user_id):
+def user_suggest(user_email):
     items = fetch_all_menu_items()
 
-    ranked_item = rank_with_preferences(items, user_id)
+    ranked_item = rank_with_preferences(items, user_email)
 
     return ranked_item[:4]
 

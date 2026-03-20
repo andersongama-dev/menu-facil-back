@@ -20,7 +20,7 @@ class MenuOut(BaseModel):
 
 router = APIRouter(prefix="/menu", tags=["menu"])
 
-@router.get("/", response_model=list[MenuOut])
+@router.get("", response_model=list[MenuOut])
 def get_menu(current_user: str = Depends(get_current_user)):
     return serviceMenu.list_menu()
 

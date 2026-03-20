@@ -28,7 +28,7 @@ class WeatherMenuResponse(BaseModel):
     temperature: float
     dishes: List[MenuItemOut]
 
-@router.post("/", response_model=WeatherMenuResponse)
+@router.post("", response_model=WeatherMenuResponse)
 def get_weather_menu(request: WeatherMenuRequest):
     try:
         result = recommend_menu_by_location(request.lat, request.lon)

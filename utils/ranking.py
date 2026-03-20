@@ -1,22 +1,24 @@
 from utils.user_preferences import get_user_preferences
 from utils.user_history import get_user_history
+from utils.find_user import find_user
 
-def rank_with_preferences(items, user_id=None):
+def rank_with_preferences(items, user_email):
     pref_scores = {}
     history_scores = {}
 
-    if user_id:
-        prefs = get_user_preferences(user_id)
-        for p in prefs:
-            value = p["preference_value"]
-            confidence = p["confidence_score"] or 0
-            pref_scores[value] = max(pref_scores.get(value, 0), confidence)
+    user = find_user(user_email)
 
-        history = get_user_history(user_id)
-        if history:
-            for i, intent in enumerate(history):
-                weight = 1 - (i / len(history))
-                history_scores[intent] = max(history_scores.get(intent, 0), weight)
+    prefs = get_user_preferences(user.id_user)
+    for p in prefs:
+        value = p["preference_value"]
+        confidence = p["confidence_score"] or 0
+        pref_scores[value] = max(pref_scores.get(value, 0), confidence)
+
+    history = get_user_history(user.id_user)
+    if history:
+        for i, intent in enumerate(history):
+            weight = 1 - (i / len(history))
+            history_scores[intent] = max(history_scores.get(intent, 0), weight)
 
     max_profit = max((float(i.profit_margin or 0) for i in items), default=1)
 

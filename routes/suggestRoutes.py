@@ -1,9 +1,9 @@
 from typing import Optional
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel, ConfigDict
 import services.suggestService as serviceSuggest
 from pydantic import RootModel
-from uuid import UUID
+from utils.get_current_user import get_current_user
 
 class MenuOut(BaseModel):
     id_item: int
@@ -22,7 +22,7 @@ class MenuListResponse(RootModel):
 
 router = APIRouter(prefix="/suggest", tags=["suggest"])
 
-@router.get("/{user_id}", response_model=MenuListResponse)
-def suggest(user_id: UUID):
-    items = serviceSuggest.user_suggest(user_id)
+@router.get("", response_model=MenuListResponse)
+def suggest(current_user = Depends(get_current_user)):
+    items = serviceSuggest.user_suggest(current_user)
     return MenuListResponse(root=items)
