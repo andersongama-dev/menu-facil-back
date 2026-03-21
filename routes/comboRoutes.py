@@ -1,8 +1,9 @@
 from datetime import datetime
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from typing import List, Optional
-from services.comboService import combo_suggest  # função que retorna ComboResponse
+from services.comboService import llm_combo_suggest
+from utils.get_current_user import get_current_user
 
 class MenuOut(BaseModel):
     id_item: int
@@ -25,5 +26,5 @@ class ComboResponse(BaseModel):
 router = APIRouter(prefix="/combo", tags=["combo"])
 
 @router.get("/{item_name}", response_model=ComboResponse)
-def combo_(item_name: str):
-    return combo_suggest(item_name)
+def combo_(item_name: str, current_user = Depends(get_current_user)):
+    return llm_combo_suggest(item_name)

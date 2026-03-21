@@ -22,7 +22,7 @@ def create_order(user_email, price):
 def find_order(user_email):
     session = SessionLocal()
     try:
-        user = find_user(session, user_email)
+        user = find_user(user_email)
         orders = session.query(OrderORM).filter(OrderORM.id_user == user.id_user).all()
         return orders
     finally:
