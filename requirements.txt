@@ -16,3 +16,6 @@ openmeteo-requests
 requests
 bcrypt
 pyjwt
+pyperclip
+django-qrcode
+crcmod
