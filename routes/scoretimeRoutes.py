@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 from services.scoretimeService import recommend_menu_by_location
+from utils.get_current_user import get_current_user
 
 router = APIRouter(prefix="/weather-menu", tags=["Weather Menu"])
 
@@ -29,9 +30,9 @@ class WeatherMenuResponse(BaseModel):
     dishes: List[MenuItemOut]
 
 @router.post("", response_model=WeatherMenuResponse)
-def get_weather_menu(request: WeatherMenuRequest):
+def get_weather_menu(request: WeatherMenuRequest, current_user: str = Depends(get_current_user)):
     try:
-        result = recommend_menu_by_location(request.lat, request.lon)
+        result = recommend_menu_by_location(request.lat, request.lon, current_user)
         return {
             "temperature": result["temperature"],
             "dishes": result["dishes"]
