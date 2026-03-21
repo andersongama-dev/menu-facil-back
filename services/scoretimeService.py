@@ -5,6 +5,8 @@ import requests_cache
 from retry_requests import retry
 import os
 from typing import List, Dict
+
+from utils.find_user import find_user
 from utils.items import fetch_all_menu_items
 import requests
 
@@ -69,7 +71,7 @@ retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
 session: requests.Session = retry_session
 openmeteo_client = openmeteo_requests.Client(session=session)
 
-def get_temperature_by_coords(lat: float, lon: float) -> float:
+def get_temperature_by_coords(lat: float, lon: float, ) -> float:
     url = "https://api.open-meteo.com/v1/forecast"
     params = {"latitude": lat, "longitude": lon, "hourly": "temperature_2m"}
     responses = openmeteo_client.weather_api(url, params=params)
@@ -77,7 +79,8 @@ def get_temperature_by_coords(lat: float, lon: float) -> float:
     hourly_temperature_2m = response.Hourly().Variables(0).ValuesAsNumpy()
     return float(hourly_temperature_2m[0])
 
-def recommend_menu_by_location(lat: float, lon: float) -> Dict:
+def recommend_menu_by_location(lat: float, lon: float, user_email) -> Dict:
+    find_user(user_email)
     current_temp = get_temperature_by_coords(lat, lon)
     recommended_dishes = llm_select_by_weather(current_temp)
     return {
