@@ -9,6 +9,7 @@
       <w>Clássico</w>
       <w>Cogumelo</w>
       <w>Cogumelos</w>
+      <w>Credenciais</w>
       <w>Crendencias</w>
       <w>Digite</w>
       <w>Erro</w>
@@ -58,6 +59,7 @@
       <w>acomp</w>
       <w>acompanhamento</w>
       <w>adicional</w>
+      <w>adicione</w>
       <w>alcoólicas</w>
       <w>alface</w>
       <w>alho</w>
@@ -68,6 +70,7 @@
       <w>apenas</w>
       <w>artesanais</w>
       <w>artesanal</w>
+      <w>aspas</w>
       <w>assada</w>
       <w>atual</w>
       <w>azeite</w>
@@ -79,6 +82,7 @@
       <w>bruta</w>
       <w>cadastrado</w>
       <w>calda</w>
+      <w>caracteres</w>
       <w>caramelizada</w>
       <w>carregados</w>
       <w>cebola</w>
@@ -87,6 +91,7 @@
       <w>champignon</w>
       <w>chave</w>
       <w>cogumelos</w>
+      <w>coloque</w>
       <w>combinam</w>
       <w>combinem</w>
       <w>considerando</w>
@@ -123,6 +128,7 @@
       <w>espinafre</w>
       <w>estritamente</w>
       <w>exatamente</w>
+      <w>exatos</w>
       <w>excluir</w>
       <w>exclusões</w>
       <w>expirado</w>
@@ -159,6 +165,7 @@
       <w>inventar</w>
       <w>invente</w>
       <w>inválida</w>
+      <w>inválidas</w>
       <w>inválido</w>
       <w>iogurte</w>
       <w>italiana</w>
@@ -203,6 +210,7 @@
       <w>prefira</w>
       <w>principalmente</w>
       <w>quaisquer</w>
+      <w>quebras</w>
       <w>queijo</w>
       <w>quentes</w>
       <w>quer</w>
@@ -214,6 +222,7 @@
       <w>recheio</w>
       <w>recomendar</w>
       <w>recomendação</w>
+      <w>referência</w>
       <w>reformular</w>
       <w>refrescantes</w>
       <w>refrigerante</w>
@@ -235,10 +244,12 @@
       <w>sistema</w>
       <w>sobre</w>
       <w>somente</w>
+      <w>sslmode</w>
       <w>sucesso</w>
       <w>sugere</w>
       <w>sugerido</w>
       <w>sugeridos</w>
+      <w>sugeriu</w>
       <w>sugestão</w>
       <w>sugira</w>
       <w>temperos</w>

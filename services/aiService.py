@@ -1,3 +1,6 @@
+from fastapi import HTTPException
+
+from models import UserORM
 from utils.upsell import get_upsells
 from utils.ai import llm_select
 from utils.items import fetch_all_menu_items
@@ -34,11 +37,12 @@ def ai_suggest_menu(user_input: str, user_email,):
     }
 
 
-def save_interaction(user_id, user_input):
+def save_interaction(user_email, user_input):
     session = SessionLocal()
+    user = find_user_by_email(user_email)
     try:
         new_ia = AIORM(
-            id_user=user_id,
+            id_user=user.id_user,
             input_text=user_input,
             parsed_intent=None
         )
@@ -74,5 +78,17 @@ def save_preference(user_id, preference_type, preference_value):
                 p.confidence_score = max(float(p.confidence_score) * 0.9, 0.05)
 
         session.commit()
+    finally:
+        session.close()
+
+def find_user_by_email(user_email: str) -> UserORM:
+    session = SessionLocal()
+    try:
+        user = session.query(UserORM).filter(UserORM.email == user_email).first()
+
+        if not user:
+            raise HTTPException(status_code=404, detail="Usuário não encontrado")
+
+        return user
     finally:
         session.close()

@@ -1,6 +1,8 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openrouter import ChatOpenRouter
 import os
+from utils.items import fetch_all_menu_items_name
+
 
 def parse_llm_response(response):
     if isinstance(response, list):
@@ -41,13 +43,11 @@ chain = prompt | model
 
 
 def llm_select(items, user_input):
-    menu_text = "\n".join([
-        f"{i.name} ({i.category}): {i.description}"
-        for i in items
-    ])
+
+    item_name_category = fetch_all_menu_items_name()
 
     response = chain.invoke({
-        "menu": menu_text,
+        "menu": item_name_category,
         "user_input": user_input
     })
 
