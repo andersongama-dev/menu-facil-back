@@ -10,6 +10,8 @@ from routes.suggestRoutes import router as user_suggest
 from routes.comboRoutes import router as combo_suggest
 from routes.scoretimeRoutes import router as score_time
 import uvicorn
+from fastapi.staticfiles import StaticFiles
+import os
 
 app = FastAPI()
 
@@ -34,6 +36,9 @@ app.include_router(ai_suggest)
 app.include_router(user_suggest)
 app.include_router(combo_suggest)
 app.include_router(score_time)
+
+os.makedirs("qrcodes", exist_ok=True)
+app.mount("/qrcodes", StaticFiles(directory="qrcodes"), name="qrcodes")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

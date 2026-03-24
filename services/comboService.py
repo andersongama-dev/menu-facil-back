@@ -2,7 +2,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openrouter import ChatOpenRouter
 import os
 from typing import List, Dict
-from utils.items import fetch_all_menu_items
+from utils.items import fetch_all_menu_items, fetch_menu_item_by_name, fetch_all_menu_items_name
 import unicodedata
 
 model = ChatOpenRouter(
@@ -13,22 +13,14 @@ model = ChatOpenRouter(
 prompt_combo = ChatPromptTemplate.from_template("""
     Você é um sistema de recomendação de combos de restaurante.
     
-    Prato principal: {item_name}
+    Item de referência: {item_name}
     
-    Menu:
-    {menu}
+    Menu completo:
+    {item_name_category}
     
-    Escolha exatamente 2 ou 3 itens do menu que combinem com o prato principal:
-    
-    - 1 bebida
-    - 1 acompanhamento
-    - 1 sobremesa (opcional)
-    
-    Regras:
-    - Não repetir o prato principal
-    - Não inventar itens
-    - Usar exatamente os nomes do menu
-    - Não explique nada
+    Escolha exatamente 2 ou 3 itens do menu que combinem com o item de referência.
+    Use apenas os nomes exatos do menu, separados por vírgula.
+    Não explique nada, não adicione caracteres extras, não use aspas, não coloque quebras de linha.
     
     Resposta:
     nome1, nome2, nome3
@@ -50,64 +42,22 @@ def parse_llm_response(response) -> List[str]:
 
 def llm_combo_suggest(item_name: str) -> Dict:
     menu_items = fetch_all_menu_items()
-
-    menu_text = "\n".join([
-        f"{item.name} ({item.category.name if item.category else ''}): {item.description}"
-        for item in menu_items
-    ])
+    item_name_category = fetch_all_menu_items_name()
+    item_name_fetch = fetch_menu_item_by_name(item_name)
 
     response = chain_combo.invoke({
-        "item_name": item_name,
-        "menu": menu_text
+        "item_name": item_name_fetch,
+        "item_name_category": item_name_category
     })
 
     names = parse_llm_response(response)
-    item_name_norm = normalize(item_name)
 
-    print(names)
+    name_to_item = {item.name: item for item in menu_items}
 
-    beverage = None
-    acomp = None
-    sobremesa = None
-
+    suggestions = []
     for name in names:
-        name_norm = normalize(name)
-        for item in menu_items:
-            item_norm = normalize(item.name)
-            cat_norm = normalize(item.category.name if item.category else "")
-
-            if item_norm == item_name_norm:
-                continue
-
-            if name_norm in item_norm or item_norm in name_norm:
-                if "bebida" in cat_norm and not beverage:
-                    beverage = item
-                elif "acompanhamento" in cat_norm and not acomp:
-                    acomp = item
-                elif "sobremesa" in cat_norm and not sobremesa:
-                    sobremesa = item
-
-        if beverage and (acomp or sobremesa):
-            break
-
-    for item in menu_items:
-        cat_norm = normalize(item.category.name if item.category else "")
-        item_norm = normalize(item.name)
-
-        if item_norm == item_name_norm:
-            continue
-
-        if not beverage and "bebida" in cat_norm:
-            beverage = item
-        elif not acomp and "acompanhamento" in cat_norm:
-            acomp = item
-        elif not sobremesa and "sobremesa" in cat_norm:
-            sobremesa = item
-
-        if beverage and (acomp or sobremesa):
-            break
-
-    suggestions = [x for x in [beverage, acomp, sobremesa] if x]
+        if name in name_to_item and name != item_name:
+            suggestions.append(name_to_item[name])
 
     return {
         "items": suggestions,

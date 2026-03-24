@@ -35,7 +35,7 @@ def find_user(email: str, password):
     try:
         user_orm = session.query(UserORM).filter(UserORM.email == email).first()
         if not user_orm:
-            raise HTTPException(status_code=404, detail="Crendencias inválida")
+            raise HTTPException(status_code=404, detail="Credenciais inválidas")
         if not bcrypt.checkpw(password.encode('utf-8'), user_orm.password):
             raise HTTPException(status_code=401, detail="Senha inválida")
         return jwt_generate(email)

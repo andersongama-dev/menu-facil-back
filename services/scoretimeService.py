@@ -7,7 +7,7 @@ import os
 from typing import List, Dict
 
 from utils.find_user import find_user
-from utils.items import fetch_all_menu_items
+from utils.items import fetch_all_menu_items, fetch_all_menu_items_name
 import requests
 
 model = ChatOpenRouter(
@@ -41,6 +41,7 @@ prompt = ChatPromptTemplate.from_template("""
 chain = prompt | model
 
 menu_items = fetch_all_menu_items()
+menu_category = fetch_all_menu_items_name()
 
 def parse_llm_response(response) -> List[str]:
     if isinstance(response, list):
@@ -50,11 +51,7 @@ def parse_llm_response(response) -> List[str]:
     return [n.strip() for n in text.split(",") if n.strip()]
 
 def llm_select_by_weather(temperature: float) -> List:
-    menu_text = "\n".join([
-        f"{item.name} ({item.category}): {item.description}"
-        for item in menu_items
-    ])
-    response = chain.invoke({"menu": menu_text, "temperature": temperature})
+    response = chain.invoke({"menu": menu_category, "temperature": temperature})
     names = parse_llm_response(response)
     recommended = []
     for name in names:
